@@ -4,9 +4,9 @@ import makeButton from "./button";
 import { makeColorStyle } from "./button-styles";
 
 console.log(
-  nav(),
-  top,
-  bottom,
-  makeButton("My first button!"),
-  makeColorStyle("cyan")
+    nav(),
+    top,
+    bottom,
+    makeButton("My first button!"),
+    makeColorStyle("cyan")
 );
