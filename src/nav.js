@@ -1,1 +1,3 @@
-export default () => "nav";
+const createNav = () => "nav";
+
+export default createNav;
