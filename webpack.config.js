@@ -13,6 +13,7 @@ const progressOptions = {
 };
 
 module.exports = env => {
+    console.log("current env is", env.mode);
     return {
         mode: env.mode,
         output: {
