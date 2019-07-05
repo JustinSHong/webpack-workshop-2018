@@ -1,5 +1,7 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpackMerge = require("webpack-merge");
+const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
 
 const progressOptions = {
     activeModules: true,
@@ -12,16 +14,19 @@ const progressOptions = {
     }
 };
 
-module.exports = env => {
-    console.log("current env is", env.mode);
-    return {
-        mode: env.mode,
-        output: {
-            filename: "bundle.js"
+// webpackMerge(default, obj1, obj2)
+module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
+    return webpackMerge(
+        {
+            mode,
+            output: {
+                filename: "bundle.js"
+            },
+            plugins: [
+                new HtmlWebpackPlugin(),
+                new webpack.ProgressPlugin(progressOptions)
+            ]
         },
-        plugins: [
-            new HtmlWebpackPlugin(),
-            new webpack.ProgressPlugin(progressOptions)
-        ]
-    };
+        modeConfig(mode)
+    );
 };
